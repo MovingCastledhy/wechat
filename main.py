@@ -108,6 +108,7 @@ def wechat():
                 }
                 # response = requests.post(sent_url, json.dumps(message), headers=headers)
                 response = requests.post(sent_url, data=json.dumps(message), headers=headers)
+                current_app.logger.info(response)
                 errcode = response.json().get("errcode")
                 resp = {
                     "ToUserName": req.get("FromUserName", ""),
@@ -145,7 +146,7 @@ def wechat():
                 resp_xml = xmltodict.unparse({"xml": resp})
                 return resp_xml
 
-            elif content == "3:
+            elif content == "3":
                 resp = {
                     "ToUserName": req.get("FromUserName", ""),
                     "FromUserName": req.get("ToUserName", ""),
@@ -161,4 +162,4 @@ def wechat():
     #     return 'errno', 403
 
 if __name__ == '__main__':
-    app.run()
+    app.run(Debug=True)
