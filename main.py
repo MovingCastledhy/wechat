@@ -6,7 +6,7 @@ import hashlib
 import xmltodict
 import time
 import requests
-# from template import *
+from template import *
 
 app = Flask(__name__)
 
@@ -63,106 +63,76 @@ def wechat():
             # return resp_xml
 
         # """模板消息"""
-        access_token = "15_sWY300bcTh1q9lqQKxqy4Jl9l9l3_XbTjCtOsV2JUOFVDQmRbtTRt6iZy4oPRYilo7dCXTfPe7J9F95xT-vrcBEA7d1srE1EoTb_5LD5uldP_XfwOPd9KoJhPqgo4OZy3_kZ13FXFj7wV3IvVIMgAJAHUY"
-        # current_app.logger.info(access_token)
-        sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
-        message = {
-            "touser": 'oW4bJ1fvxaeGg2Bqhd4-gzaS4EJE',
-            "template_id": "ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",
-            "url": "http://weixin.qq.com/download",
-            "topcolor": "#FF0000",
+        # access_token = get_token(APP_ID, APP_SECRET)
+            access_token = "15_sWY300bcTh1q9lqQKxqy4Jl9l9l3_XbTjCtOsV2JUOFVDQmRbtTRt6iZy4oPRYilo7dCXTfPe7J9F95xT-vrcBEA7d1srE1EoTb_5LD5uldP_XfwOPd9KoJhPqgo4OZy3_kZ13FXFj7wV3IvVIMgAJAHUY"
+            # current_app.logger.info(access_token)
+            sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
+            message = {
+                "touser": 'oW4bJ1fvxaeGg2Bqhd4-gzaS4EJE',
+                "template_id": "ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",
+                "url": "http://weixin.qq.com/download",
+                "topcolor": "#FF0000",
 
-            "data": {
+                "data": {
 
-                "User": {
+                    "User": {
 
-                    "value": "黄先生",
+                        "value": "黄先生",
 
-                    "color": "#173177"
+                        "color": "#173177"
 
-                },
+                    },
 
-                "Date": {
+                    "Date": {
 
-                    "value": "06月07日 19时24分",
+                        "value": "06月07日 19时24分",
 
-                    "color": "#173177"
+                        "color": "#173177"
 
-                },
+                    },
 
-                "CardNumber": {
+                    "CardNumber": {
 
-                    "value": "0426",
+                        "value": "0426",
 
-                    "color": "#173177"
+                        "color": "#173177"
 
-                },
+                    },
 
-                "Type": {
+                    "Type": {
 
-                    "value": "消费",
+                        "value": "消费",
 
-                    "color": "#173177"
+                        "color": "#173177"
 
-                },
+                    },
 
-                "Money": {
+                    "Money": {
 
-                    "value": "人民币260.00元",
+                        "value": "人民币260.00元",
 
-                    "color": "#173177"
+                        "color": "#173177"
 
-                },
+                    },
 
-                "DeadTime": {
+                    "DeadTime": {
 
-                    "value": "06月07日19时24分",
+                        "value": "06月07日19时24分",
 
-                    "color": "#173177"
+                        "color": "#173177"
 
-                },
+                    },
 
-                "Left": {
+                    "Left": {
 
-                    "value": "6504.09",
+                        "value": "6504.09",
 
-                    "color": "#173177"
+                        "color": "#173177"
+
+                    }
 
                 }
-
             }
-        }
-
-        # 推送消息
-        # if not access_token is None:
-            # conn = httplib.HTTPConnection("api.weixin.qq.com:80")  # 微信接口链接
-            # headers = {"Content-type": "application/json"}  # application/x-www-form-urlencoded
-            # params = ({'touser': "oEGZ4johnKOtayJbnEVeuaZr6zQ0",  # 用户openid
-            #            'template_id': 'AtFuydv8k_15UGZuFntaBzJRCsHCkjNm1dcWD3A-11Y',  # 模板消息ID
-            #            'url': 'http://www.710.so',  # 跳转链接
-            #            "topcolor": "#667F00",  # 颜色
-            #            "data": {  # 模板内容
-            #                "first": {"value": "尊敬的710.so : 您的网站http://www.710.so (192.168.1.1) 有异常访问",
-            #                          "color": "#173177"},
-            #                "keyword1": {"value": "访问时间 2015-04-05 15:30:59 访问IP 192.168.1.2", "color": "#173177"},
-            #                "keyword2": {"value": "访问链接 http://www.710.so", "color": "#173177"},
-            #                "remark": {"value": "访问频率 10/s", "color": "#173177"}
-            #            }
-            #            }
-            #           )
-            # conn.request("POST", "/cgi-bin/message/template/send?access_token=" + access_token,
-            #              json.JSONEncoder().encode(params), headers)  # 推送消息请求
-            # response = conn.getresponse()
-            # data = response.read()  # 推送返回数据
-            # if response.status == 200:
-            #     print
-            #     'success'
-            #     print
-            #     data
-            # else:
-            #     print
-            #     'fail'
-            # conn.close()
 
             headers = {
                 'Content-Type': 'application/json',
