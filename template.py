@@ -5,7 +5,7 @@ import sys
 import requests
 import json
 
-from datastore.mongo import dm
+# from datastore.mongo import dm
 
 
 def get_token(app_id, app_secret):
