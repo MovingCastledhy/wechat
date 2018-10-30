@@ -34,30 +34,52 @@ def wechat():
         if request.method == "GET":
             return echostr
         else:
-            resp_data = request.data
-            resp_dict = xmltodict.parse(resp_data).get('xml')
-
-            # 如果是文本消息
-            if 'text' == resp_dict.get('MsgType'):
-                response = {
-                    "ToUserName": resp_dict.get('FromUserName'),
-                    "FromUserName": resp_dict.get('ToUserName'),
+            """收发消息接口"""
+            req_xml = request.data
+            req = xmltodict.parse(req_xml)['xml']
+            if "text" == req.get("MsgType"):
+                resp = {
+                    "ToUserName": req.get("FromUserName", ""),
+                    "FromUserName": req.get("ToUserName", ""),
                     "CreateTime": int(time.time()),
                     "MsgType": "text",
-                    "Content": resp_dict.get('Content'),
+                    "Content": req.get("Content", "")
                 }
-                print(resp_dict.get('Content'))
-
             else:
-                response = {
-                "ToUserName": resp_dict.get('FromUserName'),
-                "FromUserName": resp_dict.get('ToUserName'),
-                "CreateTime": int(time.time()),
-                "MsgType": "text",
-                "Content": u"哈哈哈哈",
-            }
+                resp = {
+                    "ToUserName": req.get("FromUserName", ""),
+                    "FromUserName": req.get("ToUserName", ""),
+                    "CreateTime": int(time.time()),
+                    "MsgType": "text",
+                    "Content": "费文本"
+                }
+            resp_xml = xmltodict.unparse({"xml": resp})
+            return resp_xml
 
-            return make_response(response)
+            # resp_data = request.data
+            # resp_dict = xmltodict.parse(resp_data).get('xml')
+            #
+            # # 如果是文本消息
+            # if 'text' == resp_dict.get('MsgType'):
+            #     response = {
+            #         "ToUserName": resp_dict.get('FromUserName'),
+            #         "FromUserName": resp_dict.get('ToUserName'),
+            #         "CreateTime": int(time.time()),
+            #         "MsgType": "text",
+            #         "Content": resp_dict.get('Content'),
+            #     }
+            #     print(resp_dict.get('Content'))
+
+            # else:
+            #     response = {
+            #     "ToUserName": resp_dict.get('FromUserName'),
+            #     "FromUserName": resp_dict.get('ToUserName'),
+            #     "CreateTime": int(time.time()),
+            #     "MsgType": "text",
+            #     "Content": u"哈哈哈哈",
+            # }
+            #
+            # return make_response(response)
     else:
         return 'errno', 403
 
