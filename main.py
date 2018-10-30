@@ -89,7 +89,7 @@ def wechat():
                         "color": "#173177"
                     },
                     "keyword4": {
-                        "value": "20180930 17:11",
+                        "value": "20180930 17:13",
                         "color": "#173177"
                     },
                     "remark": {
@@ -102,10 +102,20 @@ def wechat():
             headers = {
                 'Content-Type': 'application/json'
             }
-            response = requests.post(sent_url, json.dumps(message), headers=headers)
-            print(response)
+            # response = requests.post(sent_url, json.dumps(message), headers=headers)
 
-
+            try:
+                # respone = requests.post(url, data=json_template, timeout=50)
+                response = requests.post(sent_url, data=json.dumps(message), headers=headers )
+                # 拿到返回值
+                errcode = response.json().get("errcode")
+                # print("test--", respone.json())
+                if errcode == 0:
+                    print("模板消息发送成功")
+                else:
+                    print("模板消息发送失败")
+            except Exception as e:
+                print("test++", e)
 
 
     # else:
