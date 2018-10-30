@@ -67,8 +67,16 @@ def wechat():
             req_xml = request.data
             req = xmltodict.parse(req_xml)['xml']
             content = req.get('Content')
-            if content = "1":
-                return "test_1"
+            if content == "1":
+                resp = {
+                        "ToUserName": req.get("FromUserName", ""),
+                        "FromUserName": req.get("ToUserName", ""),
+                        "CreateTime": int(time.time()),
+                        "MsgType": "text",
+                        "Content": "test_1"
+                    }
+                resp_xml = xmltodict.unparse({"xml": resp})
+                return resp_xml
                 # access_token = "15_VI6fAvm9ZUbK-zk8rIIybA7nfDqB3qb72OZjgEzu7oYfeCFteLjhZDr5P7AcS742KwI9CcSUEZGWMYBQikrSyxyeDD2UBhFMrnDqZlJpgL1QIIQhUb3boJ8cvVJcITrd3g5nA9WvYXLVmdjbDGDjADAXAX"
                 # sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
                 # message = {
@@ -121,10 +129,28 @@ def wechat():
                 #         print("模板消息发送失败")
                 # except Exception as e:
                 #     print("test++", e)
+
             elif content == 2:
-                return 'test_2'
+                resp = {
+                    "ToUserName": req.get("FromUserName", ""),
+                    "FromUserName": req.get("ToUserName", ""),
+                    "CreateTime": int(time.time()),
+                    "MsgType": "text",
+                    "Content": "test_2"
+                }
+                resp_xml = xmltodict.unparse({"xml": resp})
+                return resp_xml
+
             elif content == 3:
-                return 'test_3'
+                resp = {
+                    "ToUserName": req.get("FromUserName", ""),
+                    "FromUserName": req.get("ToUserName", ""),
+                    "CreateTime": int(time.time()),
+                    "MsgType": "text",
+                    "Content": "test_3"
+                }
+                resp_xml = xmltodict.unparse({"xml": resp})
+                return resp_xml
 
 
     # else:
