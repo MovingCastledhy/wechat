@@ -5,7 +5,8 @@ from flask import current_app, json, abort, redirect, url_for, session, g, Respo
 import hashlib
 import xmltodict
 import time
-from template import *
+import requests
+# from template import *
 
 app = Flask(__name__)
 
@@ -61,9 +62,9 @@ def wechat():
             # resp_xml = xmltodict.unparse({"xml": resp})
             # return resp_xml
 
-        """模板消息"""
-        access_token = get_token(APP_ID,APP_SECRET)
-        current_app.logger.info(access_token)
+        # """模板消息"""
+        access_token = "15_sWY300bcTh1q9lqQKxqy4Jl9l9l3_XbTjCtOsV2JUOFVDQmRbtTRt6iZy4oPRYilo7dCXTfPe7J9F95xT-vrcBEA7d1srE1EoTb_5LD5uldP_XfwOPd9KoJhPqgo4OZy3_kZ13FXFj7wV3IvVIMgAJAHUY"
+        # current_app.logger.info(access_token)
         sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
         message = {
             "touser": 'oW4bJ1fvxaeGg2Bqhd4-gzaS4EJE',
@@ -173,8 +174,8 @@ def wechat():
 
 
 
-    else:
-        return 'errno', 403
+    # else:
+    #     return 'errno', 403
 
 if __name__ == '__main__':
     app.run()
