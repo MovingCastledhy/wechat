@@ -13,7 +13,7 @@ app = Flask(__name__)
 APP_ID = 'wx52aca0ee0b6a6769'
 APP_SECRET = '3336b036596e817abc9a965bb78fd71a'
 WECHAT_TOKEN = "donghaiyan"
-
+OPEN_ID = "oW4bJ1fvxaeGg2Bqhd4-gzaS4EJE"
 
 @app.route('/wx_flask', methods=['GET', 'POST'])
 def wechat():
@@ -62,81 +62,45 @@ def wechat():
             # resp_xml = xmltodict.unparse({"xml": resp})
             # return resp_xml
 
-        # """模板消息"""
-        # access_token = get_token(APP_ID, APP_SECRET)
-            access_token = "15_sWY300bcTh1q9lqQKxqy4Jl9l9l3_XbTjCtOsV2JUOFVDQmRbtTRt6iZy4oPRYilo7dCXTfPe7J9F95xT-vrcBEA7d1srE1EoTb_5LD5uldP_XfwOPd9KoJhPqgo4OZy3_kZ13FXFj7wV3IvVIMgAJAHUY"
-            # current_app.logger.info(access_token)
+            # """模板消息"""
+            # access_token = get_token(APP_ID, APP_SECRET)
+            access_token = "15_VI6fAvm9ZUbK-zk8rIIybA7nfDqB3qb72OZjgEzu7oYfeCFteLjhZDr5P7AcS742KwI9CcSUEZGWMYBQikrSyxyeDD2UBhFMrnDqZlJpgL1QIIQhUb3boJ8cvVJcITrd3g5nA9WvYXLVmdjbDGDjADAXAX"
             sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
             message = {
-                "touser": 'oW4bJ1fvxaeGg2Bqhd4-gzaS4EJE',
-                "template_id": "ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",
-                "url": "http://weixin.qq.com/download",
-                "topcolor": "#FF0000",
+                "touser": OPEN_ID,
+                "template_id": "D7Mh7UKcUVSDFp9py7ebtrIxM-Z8QBm90j9RiOAs5aQ",
+                "url": "www.baidu.com",
 
                 "data": {
-
-                    "User": {
-
-                        "value": "黄先生",
-
+                    "first": {
+                        "value": "尊敬的客户，您的订单已支付成功",
                         "color": "#173177"
-
                     },
-
-                    "Date": {
-
-                        "value": "06月07日 19时24分",
-
+                    "keyword1": {
+                        "value": "2018款背包",
                         "color": "#173177"
-
                     },
-
-                    "CardNumber": {
-
-                        "value": "0426",
-
+                    "keyword2": {
+                        "value": "20180930",
                         "color": "#173177"
-
                     },
-
-                    "Type": {
-
-                        "value": "消费",
-
+                    "keyword3": {
+                        "value": "199元",
                         "color": "#173177"
-
                     },
-
-                    "Money": {
-
-                        "value": "人民币260.00元",
-
+                    "keyword4": {
+                        "value": "20180930 17:11",
                         "color": "#173177"
-
                     },
-
-                    "DeadTime": {
-
-                        "value": "06月07日19时24分",
-
+                    "remark": {
+                        "value": "感谢您的光临",
                         "color": "#173177"
-
-                    },
-
-                    "Left": {
-
-                        "value": "6504.09",
-
-                        "color": "#173177"
-
                     }
-
                 }
             }
 
             headers = {
-                'Content-Type': 'application/json',
-                'encoding': 'utf-8',
+                'Content-Type': 'application/json'
             }
             response = requests.post(sent_url, json.dumps(message), headers=headers)
             print(response)
