@@ -64,58 +64,67 @@ def wechat():
 
             # """模板消息"""
             # access_token = get_token(APP_ID, APP_SECRET)
-            access_token = "15_VI6fAvm9ZUbK-zk8rIIybA7nfDqB3qb72OZjgEzu7oYfeCFteLjhZDr5P7AcS742KwI9CcSUEZGWMYBQikrSyxyeDD2UBhFMrnDqZlJpgL1QIIQhUb3boJ8cvVJcITrd3g5nA9WvYXLVmdjbDGDjADAXAX"
-            sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
-            message = {
-                "touser": OPEN_ID,
-                "template_id": "D7Mh7UKcUVSDFp9py7ebtrIxM-Z8QBm90j9RiOAs5aQ",
-                "url": "www.baidu.com",
-
-                "data": {
-                    "first": {
-                        "value": "尊敬的客户，您的订单已支付成功",
-                        "color": "#173177"
-                    },
-                    "keyword1": {
-                        "value": "2018款背包",
-                        "color": "#173177"
-                    },
-                    "keyword2": {
-                        "value": "20180930",
-                        "color": "#173177"
-                    },
-                    "keyword3": {
-                        "value": "199元",
-                        "color": "#173177"
-                    },
-                    "keyword4": {
-                        "value": "20180930 17:13",
-                        "color": "#173177"
-                    },
-                    "remark": {
-                        "value": "感谢您的光临",
-                        "color": "#173177"
-                    }
-                }
-            }
-
-            headers = {
-                'Content-Type': 'application/json'
-            }
-            # response = requests.post(sent_url, json.dumps(message), headers=headers)
-
-            try:
-                # respone = requests.post(url, data=json_template, timeout=50)
-                response = requests.post(sent_url, data=json.dumps(message), headers=headers )
-                # 拿到返回值
-                errcode = response.json().get("errcode")
-                # print("test--", respone.json())
-                if errcode == 0:
-                    print("模板消息发送成功")
-                else:
-                    print("模板消息发送失败")
-            except Exception as e:
-                print("test++", e)
+            req_xml = request.data
+            req = xmltodict.parse(req_xml)['xml']
+            content = req.get('Content')
+            if content = "1":
+                return "test_1"
+                # access_token = "15_VI6fAvm9ZUbK-zk8rIIybA7nfDqB3qb72OZjgEzu7oYfeCFteLjhZDr5P7AcS742KwI9CcSUEZGWMYBQikrSyxyeDD2UBhFMrnDqZlJpgL1QIIQhUb3boJ8cvVJcITrd3g5nA9WvYXLVmdjbDGDjADAXAX"
+                # sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
+                # message = {
+                #     "touser": OPEN_ID,
+                #     "template_id": "D7Mh7UKcUVSDFp9py7ebtrIxM-Z8QBm90j9RiOAs5aQ",
+                #     "url": "www.baidu.com",
+                #
+                #     "data": {
+                #         "first": {
+                #             "value": "尊敬的客户，您的订单已支付成功",
+                #             "color": "#173177"
+                #         },
+                #         "keyword1": {
+                #             "value": "2018款背包",
+                #             "color": "#173177"
+                #         },
+                #         "keyword2": {
+                #             "value": "20180930",
+                #             "color": "#173177"
+                #         },
+                #         "keyword3": {
+                #             "value": "199元",
+                #             "color": "#173177"
+                #         },
+                #         "keyword4": {
+                #             "value": "20180930 17:13",
+                #             "color": "#173177"
+                #         },
+                #         "remark": {
+                #             "value": "感谢您的光临",
+                #             "color": "#173177"
+                #         }
+                #     }
+                # }
+                #
+                # headers = {
+                #     'Content-Type': 'application/json'
+                # }
+                # # response = requests.post(sent_url, json.dumps(message), headers=headers)
+                #
+                # try:
+                #     # respone = requests.post(url, data=json_template, timeout=50)
+                #     response = requests.post(sent_url, data=json.dumps(message), headers=headers )
+                #     # 拿到返回值
+                #     errcode = response.json().get("errcode")
+                #     # print("test--", respone.json())
+                #     if errcode == 0:
+                #         print("模板消息发送成功")
+                #     else:
+                #         print("模板消息发送失败")
+                # except Exception as e:
+                #     print("test++", e)
+            elif content == 2:
+                return 'test_2'
+            elif content == 3:
+                return 'test_3'
 
 
     # else:
