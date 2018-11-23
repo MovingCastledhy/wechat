@@ -14,6 +14,10 @@ APP_ID = 'wx52aca0ee0b6a6769'
 APP_SECRET = '3336b036596e817abc9a965bb78fd71a'
 WECHAT_TOKEN = "donghaiyan"
 OPEN_ID = "oW4bJ1fvxaeGg2Bqhd4-gzaS4EJE"
+# 推送节点和模板ID/模板名称 映射
+template_map = {
+    "offline_service": "Y0O5shw7htaDhgbLZm8MTv1aRUaJu3rUd8FXtzzNk7k",
+}
 
 @app.route('/wx_flask', methods=['GET', 'POST'])
 def wechat():
@@ -72,7 +76,7 @@ def wechat():
                 sent_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token
                 message = {
                     "touser": OPEN_ID,
-                    "template_id": "D7Mh7UKcUVSDFp9py7ebtrIxM-Z8QBm90j9RiOAs5aQ",
+                    "template_id": template_map["offline_service"],
                     "url": "www.baidu.com",
 
                     "data": {
@@ -162,4 +166,4 @@ def wechat():
     #     return 'errno', 403
 
 if __name__ == '__main__':
-    app.run(Debug=True)
+    app.run()
