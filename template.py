@@ -144,8 +144,5 @@ if __name__ == '__main__':
     # send_template('nxzl0', openids, 'service_start', url, {'start_date': '2018年9月5日'})
     send_template('nxzl0', openids, 'out_hospital', url, {'out_date': '2018年9月5日', 'patient_name': '王小瑶'})
 
-
-
-
-
+999999999999999
 8888888
