@@ -145,3 +145,4 @@ if __name__ == '__main__':
     send_template('nxzl0', openids, 'out_hospital', url, {'out_date': '2018年9月5日', 'patient_name': '王小瑶'})
 
 
+77777
